@@ -36,3 +36,10 @@ export function deleteRole(id) {
     method: 'delete'
   })
 }
+
+export function getUserResource(type, parentCode) {
+  return request({
+    url: `/api/resource/getUserResource?type=${type}&parentCode=${parentCode}`,
+    method: 'post'
+  })
+}

@@ -33,10 +33,14 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      const fd = new FormData()
+      fd.append('username', username.trim())
+      fd.append('password', password)
+      fd.append('loginType', 'Account')
+      login(fd).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        commit('SET_TOKEN', data)
+        setToken(data)
         resolve()
       }).catch(error => {
         reject(error)
@@ -54,6 +58,9 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
+        data.roles = ['editor']
+        data.avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
+        data.introduction = 'I am a super administrator'
         const { roles, name, avatar, introduction } = data
 
         // roles must be a non-empty array

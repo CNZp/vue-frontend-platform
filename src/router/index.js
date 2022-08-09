@@ -72,6 +72,7 @@ export const constantRoutes = [
   },
   {
     path: '/',
+    isMenu: true,
     component: Layout,
     redirect: '/dashboard',
     children: [
@@ -91,7 +92,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+        meta: { title: 'Documentation', icon: 'documentation' }
       }
     ]
   },
@@ -194,9 +195,9 @@ export const asyncRoutes = [
     path: '/example',
     component: Layout,
     redirect: '/example/list',
-    name: 'Example',
+    name: 'Example1',
     meta: {
-      title: 'Example',
+      title: 'Example2',
       icon: 'el-icon-s-help'
     },
     children: [
@@ -386,6 +387,15 @@ export const asyncRoutes = [
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
+
+export const resourceRouteMap = {
+  YHGL: {
+    component: () => import('@/views/clipboard/index')
+  },
+  ZZJG: {
+    component: () => import('@/views/clipboard/index')
+  }
+}
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
